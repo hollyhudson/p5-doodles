@@ -8,7 +8,7 @@ function Walker() {
 	// class methods: display() and step()
 	// show the walker
 	this.display = function() {
-		stroke(50,150,30);
+		stroke(200,150,250);
 		point(this.x,this.y);
 	}
 	// have the walker take a step
@@ -26,14 +26,15 @@ function Walker() {
 
 		// pick a random direction
 		var choice = random(1);
-		if (choice < 0.30) {
-			this.x++;
-		} else if (choice < 0.50) {
-			this.x--;
-		} else if (choice < 0.80) {
-			this.y++;
+		if (choice < 0.25) {
+			this.x = this.x + 3;
+		} else if (choice < 0.5 ) {
+			this.x = this.x - 3;
+		} else if (choice < 0.75) {
+			this.y = this.y + 3;
 		} else {
-			this.y--;
+			// this.y--; will give a line instead of stipple.
+			this.y = this.y - 3;
 		}
 	}
 }
@@ -43,7 +44,7 @@ var w;
 function setup() {
 	createCanvas(1000,600);
 	w = new Walker();
-	background(255, 245, 215);
+	background(80, 80, 80);
 	
 }
 
