@@ -3,63 +3,31 @@
 function setup() {
 	createCanvas(1000,600);
 	background(80, 80, 80);
-	var ball_center = createVector(width/2, height/2);
+	ball = new Ball();
 }
 
 function draw() {
 	background(80, 80, 80);
-	for 
-	
+	ball.move();
+	ball.display();	
 }
 
 // class definition
 function Ball() {
-	circle
+	this.pos = createVector(width/2, height/2);
 	
-	// class methods: display() and step()
-	// show the walker
 	this.display = function() {
-		stroke(200,150,250);
-		point(this.x,this.y);
+		noStroke();
+		fill(200,150,250);
+		ellipse(this.pos.x,this.pos.y, 48, 48);
 	}
-	// have the walker take a step
-	this.step = function() {
 
-		/*
-		// pick from 9 possible next postitions instead of just 4
-		// var stepx = random() * (max - min) + min
-		var stepx = (random() * (1 - (-1))) + (-1);
-		var stepy = (random() * (1 - (-1))) + (-1);
+	this.move = function() {
 
-		this.x += stepx;
-		this.y += stepy;
-		*/
+		this.vel = createVector(random(-5,5), random(-5,5));
+		this.pos = this.pos.add(this.vel);
 
-		// pick a random direction
-		var choice = random(1);
-		if (choice < 0.25) {
-			this.x = this.x + 3;
-		} else if (choice < 0.5 ) {
-			this.x = this.x - 3;
-		} else if (choice < 0.75) {
-			this.y = this.y + 3;
-		} else {
-			// this.y--; will give a line instead of stipple.
-			this.y = this.y - 3;
-		}
+		//this.pos.x = this.pos.x + random(-5,5);
+		//this.pos.y = this.pos.y + random(-5,5);
 	}
-}
-
-var w;
-
-function setup() {
-	createCanvas(1000,600);
-	w = new Walker();
-	background(80, 80, 80);
-	
-}
-
-function draw() {
-	w.step();
-	w.display();	
 }
