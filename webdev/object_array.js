@@ -3,32 +3,23 @@
 var bubble_num = 10;
 var bubbles = [];
 
-// constructor:
-function Bubble() {
-	this.x = random(50, width - 50),
-	this.y = random(50, height - 50),
-	this.display = function() {
-		stroke(100, 210, 255);
-		fill(50, 180, 255, 80);
-		ellipse(this.x, this.y, 24, 24);
-	}
-
-	this.move = function() {
-		this.x = this.x + random(-1,1);
-		this.y = this.y + random(-1,1);
-	}
-}
-
 function setup() {
 	createCanvas(800, 500);
 	for (var i = 0; i < bubble_num; i++) {
 		// the keyword "new" means use the constructor
-		bubbles[i] = new Bubble();
+		bubbles[i] = new Bubble(random(width), random(height), 24);
 	}
 }
 
 function draw() {
 	background(80);
+	if (bubbles.length > 50) {
+		var extras = bubbles.length - 50;
+		for (var i = 0; i < extras; i++) {
+			bubbles.splice(0,1);
+		}
+	}
+
 	for (var i = 0; i < bubbles.length; i++) {
 		bubbles[i].move();
 		bubbles[i].display();
@@ -36,5 +27,11 @@ function draw() {
 }
 
 function mousePressed() {
-	bubbles.push(new Bubble());
+	for (var i = 0; i < bubbles.length; i++) {
+		bubbles[i].clicked();
+	}
+}
+
+function mouseDragged() {
+	bubbles.push(new Bubble(mouseX, mouseY, 24));
 }
