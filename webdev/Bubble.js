@@ -4,7 +4,7 @@ function Bubble(posX, posY, radius) {
 	this.y = posY;
 	this.r = radius;
 	this.col = 80;
-	this.lifespan = 1000;
+	this.rate_of_shrink = 0.2; 	// lower is slower
 
 	this.display = function() {
 		stroke(100, 210, 255);
@@ -18,11 +18,7 @@ function Bubble(posX, posY, radius) {
 		this.y = this.y + random(-1,1);
 
 		// shrink over time
-		if (this.lifespan % 3 == 0) {
-			this.r--;
-		}
-
-		this.lifespan--;	
+		this.r = this.r - this.rate_of_shrink;
 	}
 
 	this.clicked = function() {
@@ -33,11 +29,9 @@ function Bubble(posX, posY, radius) {
 	}
 
 	this.isFinished = function() {
-		console.log("radius: ");
-		if (this.r == 0) {
+		if (this.r <= 0) {
 			return true;
 		} else {
-			console.log("not yet");
 			return false;
 		}
 	}

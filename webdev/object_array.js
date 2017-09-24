@@ -4,7 +4,7 @@ var bubble_num = 10;
 var bubbles = [];
 
 function setup() {
-	createCanvas(1200, 800);
+	createCanvas(800, 500);
 	for (var i = 0; i < bubble_num; i++) {
 		// the keyword "new" means use the constructor
 		bubbles[i] = new Bubble(random(width), random(height), 24);
@@ -25,7 +25,12 @@ function draw() {
 	for (var i = bubbles.length - 1; i >= 0 ; i--) {
 		bubbles[i].update();
 		bubbles[i].display();
-		if (bubbles[i].isFinished) {
+		/*
+		if (bubbles[i].r <= 0) {
+			bubbles.splice(i,1);
+		}
+		*/
+		if (bubbles[i].isFinished()) {
 			bubbles.splice(i, 1);	
 		}
 	}
