@@ -4,7 +4,7 @@ var bubble_num = 10;
 var bubbles = [];
 
 function setup() {
-	createCanvas(800, 500);
+	createCanvas(1200, 800);
 	for (var i = 0; i < bubble_num; i++) {
 		// the keyword "new" means use the constructor
 		bubbles[i] = new Bubble(random(width), random(height), 24);
@@ -20,9 +20,14 @@ function draw() {
 		}
 	}
 
-	for (var i = 0; i < bubbles.length; i++) {
-		bubbles[i].move();
+	// You need to loop backwards when removing items from an array
+	// or else you'll end up skipping the item after the one you deleted
+	for (var i = bubbles.length - 1; i >= 0 ; i--) {
+		bubbles[i].update();
 		bubbles[i].display();
+		if (bubbles[i].isFinished) {
+			bubbles.splice(i, 1);	
+		}
 	}
 }
 
