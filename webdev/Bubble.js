@@ -1,14 +1,19 @@
 // constructor:
-function Bubble(posX, posY, radius) {
+function Bubble(posX, posY, radius, blue) {
 	this.x = posX;
 	this.y = posY;
 	this.r = radius;
-	this.col = 80;
+	this.blue = blue;
 	this.rate_of_shrink = 0.2; 	// lower is slower
 
 	this.display = function() {
-		stroke(100, 210, 255);
-		fill(50, 180, 255, this.col);
+		if (blue == true) {
+			stroke(100, 210, 255);
+			fill(50, 180, 255, 80);
+		} else {
+			stroke(180, 180, 180);
+			fill(150, 150, 150, 80);
+		}
 		ellipse(this.x, this.y, this.r * 2, this.r * 2);
 	}
 
@@ -24,7 +29,7 @@ function Bubble(posX, posY, radius) {
 	this.clicked = function() {
 		var d = dist(mouseX, mouseY, this.x, this.y);
 		if (d < this.r) {
-			this.col = 255;	
+			this.blue = true;	
 		}
 	}
 

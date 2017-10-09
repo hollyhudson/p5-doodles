@@ -5,19 +5,31 @@ var bubbles = [];
 
 function setup() {
 	createCanvas(800, 500);
+
+	// start with a few random bubbles in place
+	/*
 	for (var i = 0; i < bubble_num; i++) {
 		// the keyword "new" means use the constructor
 		bubbles[i] = new Bubble(random(width), random(height), 24);
 	}
+	*/
 }
 
 function draw() {
 	background(80);
+
+	// purge any extra bubbles so we keep only 50
 	if (bubbles.length > 50) {
 		var extras = bubbles.length - 50;
 		for (var i = 0; i < extras; i++) {
 			bubbles.splice(0,1);
 		}
+	}
+	
+	// Add new bubbles randomly
+	if (parseInt(random(20)) == 0) {
+		bubbles.push(new Bubble(
+			random(width), random(height), random(8, 24), false));
 	}
 
 	// You need to loop backwards when removing items from an array
@@ -42,6 +54,6 @@ function mousePressed() {
 	}
 }
 
-function mouseDragged() {
-	bubbles.push(new Bubble(mouseX, mouseY, 24));
+function mouseMoved() {
+	bubbles.push(new Bubble(mouseX, mouseY, random(8,24), true));
 }
