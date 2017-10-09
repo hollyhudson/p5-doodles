@@ -23,7 +23,25 @@ function Bubble(posX, posY, radius, blue) {
 		this.y = this.y + random(-1,1);
 
 		// shrink over time
-		this.r = this.r - this.rate_of_shrink;
+		//this.r = this.r - this.rate_of_shrink;
+	}
+
+	this.intersects = function(other) {
+		var d = dist(this.x, this.y, other.x, other.y);
+
+		if (d < this.r + other.r) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	this.changeColor = function() {
+		if (blue == true) {
+			blue = false;
+		} else {
+			blue = true;
+		}
 	}
 
 	this.clicked = function() {

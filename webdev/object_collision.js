@@ -1,4 +1,7 @@
 // Checking for intersection of objects for collision
+// For a simple circle, if the distance between the two centers is 
+// greater than the sum of the radii, they are not touching
+// dist(x1, y1, x2, y2)
 
 var bubble_num = 10;
 var bubbles = [];
