@@ -3,6 +3,8 @@
 // greater than the sum of the radii, they are not touching
 // dist(x1, y1, x2, y2)
 
+// Make it more efficient, don't check both A==B and B==A
+
 var bubble_num = 10;
 var bubbles = [];
 
@@ -32,7 +34,7 @@ function draw() {
 	// Add new bubbles randomly
 	if (parseInt(random(20)) == 0) {
 		bubbles.push(new Bubble(
-			random(width), random(height), random(8, 24), false));
+			random(width), random(height), random(10, 30), false));
 	}
 
 	// You need to loop backwards when removing items from an array
@@ -40,11 +42,25 @@ function draw() {
 	for (var i = bubbles.length - 1; i >= 0 ; i--) {
 		bubbles[i].update();
 		bubbles[i].display();
-		/*
-		if (bubbles[i].r <= 0) {
-			bubbles.splice(i,1);
+		bubbles[i].notTouching();
+
+		//for (var j = 0; j < parseInt(bubbles.length/2) +1; j++) {
+		for (var j = 0; j < bubbles.length; j++) {
+/*
+			if (bubbles[i] != bubbles[j]) { 
+				if (bubbles[i].intersects(bubbles[j])) {
+					bubbles[i].touching();
+					//bubbles[j].touching();
+				}
+			}
+*/
+			if (bubbles[i] == bubbles[j])
+				continue;
+			if (!bubbles[i].intersects(bubbles[j]))
+				continue;
+			bubbles[i].touching();
 		}
-		*/
+		
 		if (bubbles[i].isFinished()) {
 			bubbles.splice(i, 1);	
 		}
@@ -57,6 +73,8 @@ function mousePressed() {
 	}
 }
 
+/*
 function mouseMoved() {
 	bubbles.push(new Bubble(mouseX, mouseY, random(8,24), true));
 }
+*/

@@ -7,7 +7,7 @@ function Bubble(posX, posY, radius, blue) {
 	this.rate_of_shrink = 0.2; 	// lower is slower
 
 	this.display = function() {
-		if (blue == true) {
+		if (this.blue == true) {
 			stroke(100, 210, 255);
 			fill(50, 180, 255, 80);
 		} else {
@@ -36,12 +36,12 @@ function Bubble(posX, posY, radius, blue) {
 		}
 	}
 
-	this.changeColor = function() {
-		if (blue == true) {
-			blue = false;
-		} else {
-			blue = true;
-		}
+	this.touching = function() {
+		this.blue = true;
+	}
+
+	this.notTouching = function() {
+		this.blue = false;
 	}
 
 	this.clicked = function() {
