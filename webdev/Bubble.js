@@ -3,7 +3,7 @@ function Bubble(posX, posY, radius, blue) {
 	this.x = posX;
 	this.y = posY;
 	this.r = radius;
-	this.blue = blue;
+	this.blue = false;
 	this.rate_of_shrink = 0.2; 	// lower is slower
 
 	this.display = function() {
@@ -17,7 +17,7 @@ function Bubble(posX, posY, radius, blue) {
 		ellipse(this.x, this.y, this.r * 2, this.r * 2);
 	}
 
-	this.update = function() {
+	this.updatePos = function() {
 		// wiggle randomly
 		this.x = this.x + random(-1,1);
 		this.y = this.y + random(-1,1);
@@ -36,7 +36,7 @@ function Bubble(posX, posY, radius, blue) {
 		}
 	}
 
-	this.touching = function() {
+	this.touching = function(other) {
 		this.blue = true;
 	}
 
