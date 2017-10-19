@@ -1,10 +1,8 @@
 // constructor:
-function Bubble(posX, posY, radius, blue) {
+function Image(posX, posY, img) {
 	this.x = posX;
 	this.y = posY;
-	this.r = radius;
-	this.blue = blue;
-	this.rate_of_shrink = 0.2;    // lower is slower
+	this.img = img;
 
 	this.display = function() {
 		if (this.blue == true) {
@@ -15,7 +13,8 @@ function Bubble(posX, posY, radius, blue) {
 			fill(150, 150, 150, 80);
 		}
 
-		ellipse(this.x, this.y, this.r * 2, this.r * 2);
+		imgMode(CENTER);
+		image(this.img, this.x, this.y);
 	}
 
 	this.updatePos = function() {
