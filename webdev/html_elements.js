@@ -8,6 +8,9 @@ var bubbles_num = 10;
 var bubbles = [];
 var canvas_text;
 var top_text;
+var bright_button;
+var restart_button;
+var bgcolor = 80;
 
 function setup() {
 	canvas_text = createElement('h1', 'Here is some text');
@@ -15,17 +18,26 @@ function setup() {
 	canvas_text.position(100,200);
 	createCanvas(800, 500);
 
-	// We won't create bubbles here because we want them all to 
-	// generate randomly at random intervals
+	bright_button = createButton("change brightness");
+	restart_button = createButton("pop");
 
+	// these events also exist for each dom element, not just globally
+	bright_button.mousePressed(changeBrightness); 
+	restart_button.mousePressed(restart); 
 }
 
-function mousePressed() {
-	canvas_text.html("new text!");
+function changeBrightness() {
+	bgcolor = random(50, 100);
+}
+
+function restart() {
+	while(bubbles.length > 0) {
+		bubbles.splice(0,1);
+	}
 }
 
 function draw() {
-	background(80);
+	background(bgcolor);
 	top_text.html("The mouse is at (" + mouseX + ", " + mouseY + ")");	
 
 	// Create some new bubbles randomly
