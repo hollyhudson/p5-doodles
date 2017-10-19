@@ -8,26 +8,26 @@ var bubbles_num = 10;
 var bubbles = [];
 var canvas_text;
 var top_text;
-var bright_button;
 var restart_button;
-var bgcolor = 80;
+var slider;
+var input;
+var frombox_p;
 
 function setup() {
 	canvas_text = createElement('h1', 'Here is some text');
 	top_text = createElement('h1', 'Waiting...');
 	canvas_text.position(100,200);
 	createCanvas(800, 500);
-
-	bright_button = createButton("change brightness");
+	createP('');		// for spacing
 	restart_button = createButton("pop");
+	createP('');		// for spacing
 
 	// these events also exist for each dom element, not just globally
-	bright_button.mousePressed(changeBrightness); 
 	restart_button.mousePressed(restart); 
-}
 
-function changeBrightness() {
-	bgcolor = random(50, 100);
+	slider = createSlider(30, 100, 80);
+	frombox_p = createP('from the box');
+	input = createInput('type something in the box');
 }
 
 function restart() {
@@ -37,8 +37,12 @@ function restart() {
 }
 
 function draw() {
-	background(bgcolor);
+	background(slider.value());
 	top_text.html("The mouse is at (" + mouseX + ", " + mouseY + ")");	
+	frombox_p.html(input.value());
+
+	fill(255, 100, 200);
+	text(input.value(), 10, 20);
 
 	// Create some new bubbles randomly
 	if (parseInt(random(20)) == 0) {
