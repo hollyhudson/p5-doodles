@@ -24,31 +24,65 @@ Pretty sure that p was 50% when I first adapted this, I would try t between
 
 var cubes = [];
 var threshold = 0.40; 	// number to have on
-var led_fade = 0.0; 	// no fade by default
+var threshold_slider;
+var threshold_text;
+var led_fade = 0.1; 	// low fade by default
+var fade_slider;
+var fade_text;
 var led_dt = 100; 		// dan suggests between 4 and 10 Hz, tamiko suggests faster
+var led_dt_slider;
+var led_dt_text;
 
 var t;
-var x_spacing = 25.4/2;
-var y_spacing = 15.8/2;
-var led_diameter = 11/2;
+var x_spacing = 25.4;
+var y_spacing = 15.8;
+var led_diameter = 11;
 var cube_size = (20 + 2 * 4) * x_spacing;
 
+var space;
+
 function setup() {
-	createCanvas(700,550);
+	space = createP('');
+	threshold_slider = createSlider(0, 10, threshold * 10); 
+	threshold_text = createElement('span', '"  threshold: " + threshold_slider.value()/10');
+
+	createP("");
+
+	fade_slider = createSlider(0, 10, led_fade * 10); 
+	fade_text = createElement('span', '"  fade: " + fade_slider.value()/10');
+
+	createP("");
+	
+	createCanvas(600,600);
 	for (i = 0; i < 4; i++) {
 		cubes[i] = new Cube();
 	}
+	
 }
 
 function draw() {
 	background(0);
+	threshold_text.html("threshold: " + threshold_slider.value()/10);
+	fade_text.html("fade: " + fade_slider.value()/10);
+	//led_dt_text.html("dt: " + led_dt_slider.value());
 
-	cubes[0].display();
-/*	
-	for	(var x = 0; x < 2; x++) {
-		for	(var y = 0; y < 2; y++) {
-			translate
-		}
+/*
+	var now = millis();
+	if (now - last_update > led_dt) {
+		last_update = now;
+			
 	}
 */
+
+	scale(0.33);
+	translate(225,225);
+	
+	for	(var x = 0; x < 2; x++) {
+		for	(var y = 0; y < 2; y++) {
+			push();
+			translate(x * cube_size * 1.2, y * cube_size * 1.2);
+			cubes[x * 2 + y].display();
+			pop();
+		}
+	}
 }

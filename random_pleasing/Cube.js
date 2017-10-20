@@ -8,11 +8,13 @@ function Cube() {
 	this.display = function() {
 		fill(20,0,0);
 
+		// Make the dark red panel
 		rect(-4 * x_spacing, 
 			-4 * x_spacing, 
 			(20 + 8) * x_spacing, 
 			(20 + 8) * x_spacing);
 
+		// Place the two LED panels
 		this.a.update();
 		this.a.display();
 	
