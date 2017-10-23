@@ -23,11 +23,35 @@ function setup() {
 	createP('');		// for spacing
 
 	// these events also exist for each dom element, not just globally
+	restart_button.mouseOver(changeColor);
+	restart_button.mouseOut(revertColor);
 	restart_button.mousePressed(restart); 
 
 	slider = createSlider(30, 100, 80);
+
 	frombox_p = createP('from the box');
+
 	input = createInput('type something in the box');
+
+	random_text = createP('some random text');
+	random_text.mouseOver(dontTouch);
+	random_text.mouseOut(thankYou);
+}
+
+function changeColor() {
+	restart_button.style("background-color", "#DFDCF7");
+}
+
+function revertColor() {
+	restart_button.style("background-color", "#CCC5FA");
+}
+
+function dontTouch() {
+	random_text.html("OMG DON'T TOUCH");
+}
+
+function thankYou() {
+	random_text.html("thank you!");
 }
 
 function restart() {
