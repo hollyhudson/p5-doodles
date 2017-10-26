@@ -1,5 +1,31 @@
+body {
+	font-family: 'Lato', san-serif;
+	color: #0;
+}
+
+h1 {
+	text-shadow: 3px 5px 5px #445544;
+}
+
+a:hover {
+	color: #ffccb3;
+	text-decoration: none;
+}
+
 button {
-	background-color: #CCC5FA;
 	padding: 10px;
 	border-radius: 5px;
 }
+
+.nav-button {
+	background-color: #ffeedd;
+}
+
+.kitten-button {
+	background-color: #CCC5FA;
+}
+
+li {
+	padding: 5px;
+}
+
