@@ -1,5 +1,5 @@
 // constructor:
-function Image(posX, posY, img) {
+function xImage(posX, posY, img) {
 	this.x = posX;
 	this.y = posY;
 	this.img = img;

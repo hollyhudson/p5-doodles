@@ -15,6 +15,10 @@ function setup() {
 	// list all the families
 	for (let i = 0; i < birds.length; i++) {
 		createElement('h1', birds[i].family);
+		let members = birds[i].members;
+		for (let j = 0; j < members.length; j++) {
+			createDiv(members[j]);
+		}
 	}
 }
 
