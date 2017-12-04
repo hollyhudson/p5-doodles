@@ -1,13 +1,15 @@
 var dropzone;
 
 function setup() {
-	createCanvas(200,200);
+	var c = createCanvas(200,200);
 	background(0);
 
 	dropzone = select('#dropzone');
-	dropzone.dragOver(highlight);
-	dropzone.dragLeave(unhighlight);
+	//dropzone.dragOver(highlight);
+	//dropzone.dragLeave(unhighlight);
 	dropzone.drop(got_file, unhighlight);
+	c.drop(got_file, unhighlight);
+	//c.drop(unhighlight, got_file);
 
 }
 
@@ -22,6 +24,7 @@ function unhighlight() {
 }
 
 function got_file(file) {
+	console.log("in got_file");
 	createP(file.name);
 	createP(file.type);
 	createP(file.size);

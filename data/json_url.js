@@ -5,9 +5,11 @@ let astro_num;
 
 function preload() {
 	astronaut = loadImage("/images/astronaut_f_Naveen_Cs.png");
-	loadJSON("http://api.open-notify.org/astros.json", function(data) {
-		astro_num = data.number;	
-	});
+	loadJSON("http://api.open-notify.org/astros.json", gotdata);
+}
+
+function gotdata(data) {
+	astro_num = data.number;
 }
 
 function setup() {
