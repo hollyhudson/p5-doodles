@@ -9,23 +9,26 @@ function Astronaut(posX, posY, name, ship) {
 	this.y_dir = random(-1,1);
 
 	this.display = function() {
-		color(0);
-		text(name, this.x, this.y+10);
-		text(ship, this.x, this.y+20);
+		//color(0);
+		//text(name, this.x, this.y+10);
+		//text(ship, this.x, this.y+20);
 		//scale(.1);
 		//image(astro_image, this.x, this.y)
 	}
 
 	this.update = function() {
+		console.log("in Astronaut.update");
+	/*
 		// float randomly
-		if (random(10) == 0) {
+		if ((parseInt(random(10)) == 0) {
 			this.x_dir *= -1; // change direction
 		}
-		if (random(10) == 0) {
+		if ((parseInt(random(10)) == 0) {
 			this.y_dir *= -1; // change direction
 		}
 		this.x += this.x_dir;
 		this.y += this.y_dir;
+	*/
 
 	}
 }

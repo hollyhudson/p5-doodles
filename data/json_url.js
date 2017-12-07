@@ -5,12 +5,12 @@ var astro_data;
 var crew = [];
 
 function preload() {
-	astro_image = loadImage("/images/astronaut_f_Naveen_Cs_notext.png");
+	astro_image = loadImage("/images/astronaut_f_Naveen_Cs.png");
 	loadJSON("http://api.open-notify.org/astros.json", gotdata);
 }
 
 function gotdata(data) {
-	astro_data = data
+	astro_data = data;
 }
 
 function setup() {
